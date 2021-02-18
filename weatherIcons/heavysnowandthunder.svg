@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="30px" viewBox="0 0 38 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>34-heavy-snow-thunder</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-909.000000, -294.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="34-heavy-snow-thunder" transform="translate(910.000000, 295.000000)">
+                <path d="M6,10 C6,4.478 10.477,0 16,0 C21.523,0 26,4.478 26,10" id="Stroke-85"></path>
+                <path d="M30,22 C33.313,22 36,19.313 36,16 C36,12.687 33.313,10 30,10 L26,10" id="Stroke-87" stroke-linecap="round"></path>
+                <path d="M12,16 C12,12.687 9.313,10 6,10 C2.687,10 0,12.687 0,16 C0,19.313 2.687,22 6,22" id="Stroke-89" stroke-linecap="round"></path>
+                <path d="M16,23.5 C16,24.8808333 14.8808333,26 13.5,26 C12.1191667,26 11,24.8808333 11,23.5 C11,22.1191667 12.1191667,21 13.5,21 C14.8808333,21 16,22.1191667 16,23.5 Z" id="Stroke-93" stroke-linecap="round"></path>
+                <path d="M13.5,19 L13.5,21" id="Stroke-95" stroke-linecap="round"></path>
+                <path d="M10,21 L11.2990286,21.7500165" id="Stroke-97" stroke-linecap="round"></path>
+                <path d="M16,25 L17.2990286,25.7500165" id="Stroke-97" stroke-linecap="round"></path>
+                <path d="M13.5,28 L13.5,27" id="Stroke-101" stroke-linecap="round"></path>
+                <path d="M17.3340191,21 L16,22" id="Stroke-105" stroke-linecap="round"></path>
+                <path d="M11.3340191,25 L10,26" id="Stroke-105" stroke-linecap="round"></path>
+                <polyline id="Stroke-227" stroke-linecap="round" stroke-linejoin="round" points="24 16 22 22 26 22 24 28"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

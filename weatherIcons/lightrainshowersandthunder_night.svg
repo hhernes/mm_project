@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="34px" viewBox="0 0 38 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>24-drizzle-thunder-moon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-332.000000, -338.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="24-drizzle-thunder-moon" transform="translate(333.000000, 339.000000)">
+                <path d="M6,14 C6,8.478 10.477,4 16,4 C21.523,4 26,8.478 26,14" id="Stroke-565"></path>
+                <path d="M30,26 C33.313,26 36,23.313 36,20 C36,16.687 33.313,14 30,14 L26,14" id="Stroke-567" stroke-linecap="round"></path>
+                <path d="M12,20 C12,16.687 9.313,14 6,14 C2.687,14 0,16.687 0,20 C0,23.313 2.687,26 6,26" id="Stroke-569" stroke-linecap="round"></path>
+                <path d="M32.4727,14.6338 C34.6007,13.1968 35.9997,10.7618 35.9997,7.9998 C35.9997,7.9118 35.9897,7.8278 35.9867,7.7408 C35.3507,7.9048 34.6867,7.9998 33.9997,7.9998 C29.6687,7.9998 26.1507,4.5568 26.0137,0.2588 C23.5077,0.9008 21.4737,2.7208 20.5447,5.0948" id="Stroke-571"></path>
+                <polyline id="Stroke-573" stroke-linecap="round" stroke-linejoin="round" points="23 20 21 26 25 26 23 32"></polyline>
+                <path d="M12,24 L12,26" id="Stroke-592" stroke-linecap="round"></path>
+                <path d="M12,30 L12,32" id="Stroke-594" stroke-linecap="round"></path>
+                <path d="M16,24 L16,26" id="Stroke-592" stroke-linecap="round"></path>
+                <path d="M16,30 L16,32" id="Stroke-594" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

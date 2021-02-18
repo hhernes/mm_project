@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="38px" viewBox="0 0 42 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>28-light-snow-thunder-sun</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-578.000000, -288.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="28-light-snow-thunder-sun" transform="translate(579.000000, 289.000000)">
+                <path d="M6,18 C6,12.478 10.477,8 16,8 C21.523,8 26,12.478 26,18" id="Stroke-85"></path>
+                <path d="M30,30 C33.313,30 36,27.313 36,24 C36,20.687 33.313,18 30,18 L26,18" id="Stroke-87" stroke-linecap="round"></path>
+                <path d="M12,24 C12,20.687 9.313,18 6,18 C2.687,18 0,20.687 0,24 C0,27.313 2.687,30 6,30" id="Stroke-89" stroke-linecap="round"></path>
+                <path d="M17,31.5 C17,32.8808333 15.8808333,34 14.5,34 C13.1191667,34 12,32.8808333 12,31.5 C12,30.1191667 13.1191667,29 14.5,29 C15.8808333,29 17,30.1191667 17,31.5 Z" id="Stroke-93" stroke-linecap="round"></path>
+                <path d="M14.5,27 L14.5,29" id="Stroke-95" stroke-linecap="round"></path>
+                <path d="M11,29 L12.2990286,29.7500165" id="Stroke-97" stroke-linecap="round"></path>
+                <path d="M17,33 L18.2990286,33.7500165" id="Stroke-97" stroke-linecap="round"></path>
+                <path d="M14.5,36 L14.5,35" id="Stroke-101" stroke-linecap="round"></path>
+                <path d="M18.3340191,29 L17,30" id="Stroke-105" stroke-linecap="round"></path>
+                <path d="M12.3340191,33 L11,34" id="Stroke-105" stroke-linecap="round"></path>
+                <polyline id="Stroke-227" stroke-linecap="round" stroke-linejoin="round" points="24 24 22 30 26 30 24 36"></polyline>
+                <path d="M20,8.799 C21.468,7.086 23.646,6 26.079,6 C30.497,6 34.079,9.582 34.079,14 C34.079,15.701 33.548,17.279 32.643,18.575" id="Stroke-536"></path>
+                <path d="M26,0 L26,2" id="Stroke-538" stroke-linecap="round"></path>
+                <path d="M40,14 L38,14" id="Stroke-540" stroke-linecap="round"></path>
+                <path d="M36.414,4 L35,5.414" id="Stroke-542" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

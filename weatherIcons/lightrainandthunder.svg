@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="31px" viewBox="0 0 38 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>30-drizzle-thunder</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-694.000000, -295.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="30-drizzle-thunder" transform="translate(695.000000, 296.000000)">
+                <path d="M6,10 C6,4.477 10.478,0 16,0 C21.522,0 26,4.477 26,10" id="Stroke-221"></path>
+                <path d="M30,22 C33.313,22 36,19.313 36,16 C36,12.687 33.313,10 30,10 L26,10" id="Stroke-223" stroke-linecap="round"></path>
+                <path d="M12,16 C12,12.687 9.313,10 6,10 C2.687,10 0,12.687 0,16 C0,19.313 2.687,22 6,22" id="Stroke-225" stroke-linecap="round"></path>
+                <polyline id="Stroke-227" stroke-linecap="round" stroke-linejoin="round" points="23 17 21 23 25 23 23 29"></polyline>
+                <path d="M16,21 L16,23" id="Stroke-592" stroke-linecap="round"></path>
+                <path d="M16,27 L16,29" id="Stroke-594" stroke-linecap="round"></path>
+                <path d="M12,21 L12,23" id="Stroke-592" stroke-linecap="round"></path>
+                <path d="M12,27 L12,29" id="Stroke-594" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

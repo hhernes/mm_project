@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="38px" height="34px" viewBox="0 0 38 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>43-heavy-sleet-moon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-263.000000, -514.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="43-heavy-sleet-moon" transform="translate(264.000000, 515.000000)">
+                <path d="M6,15 C6,9.478 10.478,5 16,5 C21.522,5 26,9.478 26,15" id="Stroke-544"></path>
+                <path d="M30,27 C33.313,27 36,24.313 36,21 C36,17.687 33.313,15 30,15 L26,15" id="Stroke-546" stroke-linecap="round"></path>
+                <path d="M12,21 C12,17.687 9.313,15 6,15 C2.687,15 0,17.687 0,21 C0,24.313 2.687,27 6,27" id="Stroke-548" stroke-linecap="round"></path>
+                <path d="M25,27 C25,28.657 23.657,30 22,30 C20.343,30 19,28.657 19,27 C19,25.343 20.343,24 22,24 C23.657,24 25,25.343 25,27 Z" id="Stroke-550" stroke-linecap="round"></path>
+                <path d="M22,22 L22,24" id="Stroke-552" stroke-linecap="round"></path>
+                <path d="M17.2373,24.25 L18.9683,25.25" id="Stroke-554" stroke-linecap="round"></path>
+                <path d="M17.2373,29.75 L18.9683,28.75" id="Stroke-556" stroke-linecap="round"></path>
+                <path d="M22,32 L22,30" id="Stroke-558" stroke-linecap="round"></path>
+                <path d="M26.7627,29.75 L25.0317,28.75" id="Stroke-560" stroke-linecap="round"></path>
+                <path d="M26.7627,24.25 L25.0317,25.25" id="Stroke-562" stroke-linecap="round"></path>
+                <path d="M31.928,15 C34.056,13.563 35.455,11.128 35.455,8.366 C35.455,8.278 35.446,8.194 35.443,8.107 C34.806,8.271 34.143,8.366 33.455,8.366 C29.124,8.366 25.606,4.923 25.468,0.625 C22.963,1.267 20.929,3.087 20,5.461" id="Stroke-624"></path>
+                <path d="M10,25 L10,32" id="Stroke-433" stroke-linecap="round"></path>
+                <path d="M14,25 L14,29" id="Stroke-435" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

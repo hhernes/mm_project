@@ -1,0 +1,183 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  background-color: black;
+  font-weight: 300;
+  /* font-size: 20px; */
+}
+
+#timeModule {
+  position: fixed;
+  top: 1%;
+  left: 1%;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+#clock {
+  font-size: 110px;
+}
+
+#weekday {
+  font-size: 40px;
+}
+
+#date {
+  font-size: 40px;
+}
+
+#weather {
+  position: fixed;
+  top: 1%;
+  right: 1%;
+  font-size: 20px;
+}
+
+
+.tempNowContainer {
+  text-align: center;
+}
+
+.tempnow {
+  display: inline-block;
+}
+
+
+#temperatureNow {
+  font-size: 150px;
+  transform: translateY(-5%);
+}
+
+#weatherSymbol {
+  /* TO DO */
+  width: 90px;
+  height: auto;
+}
+
+#precipitation {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#sunrise {
+  margin-bottom: 10px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  font-size: 24px;
+  /* border-top: 1px; */
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
+}
+
+.timeFrame {
+  display: inline-block;
+  width: 90px;
+  height: 40px;
+  margin-right: 10px;
+  min-width: 20px;
+
+}
+
+.symbol {
+  /* margin-left: 10px; */
+  display: inline-block;
+  width: 60px;
+  vertical-align: middle;
+}
+
+.line {
+  font-size: 24px;
+  height: 55px;
+}
+
+.temperature {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+
+.precipitation {
+ align-items: flex-end;
+ /* margin-left: 10px; */
+ display: inline-block;
+ width: 140px;
+ text-align: center;
+}
+
+ul {
+  padding: 0;
+  margin: 0%;
+}
+
+
+#citybike {
+  position: fixed;
+  bottom: 1%;
+  left: 1%;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  /* max-width: 100px; */
+}
+
+.row {
+  display: flex;
+  flex-basis: auto;
+  /* display: table-cell; */
+  /* vertical-align: middle; */
+  /* flex-wrap: nowrap; */
+}
+
+.station {
+ width: 300px;
+ font-weight: 400;
+ height: 60px;
+ line-height: 60px;
+ font-size: 30px;
+}
+
+.bike {
+  text-align: center;
+  line-height: 60px;
+  margin-left: 15px;
+}
+
+.bikes {
+  text-align: center;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  line-height: 40px;
+  transform: translateY(20%);
+  font-weight: 700;
+  font-size: 26px;
+}
+
+#entur {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-size: 28px;
+}
+
+.fronttext {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin-bottom: 2px;
+  margin-top: 4px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.timestamp {
+  margin-right: 16px; 
+}

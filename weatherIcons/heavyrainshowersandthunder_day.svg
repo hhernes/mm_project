@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="43px" height="37px" viewBox="0 0 43 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>25-rain-thunder-sun</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-393.000000, -288.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="25-rain-thunder-sun" transform="translate(394.000000, 289.000000)">
+                <path d="M6,17 C6,11.477 10.478,7 16,7 C21.522,7 26,11.477 26,17" id="Stroke-221"></path>
+                <path d="M30,29 C33.313,29 36,26.313 36,23 C36,19.687 33.313,17 30,17 L26,17" id="Stroke-223" stroke-linecap="round"></path>
+                <path d="M12,23 C12,19.687 9.313,17 6,17 C2.687,17 0,19.687 0,23 C0,26.313 2.687,29 6,29" id="Stroke-225" stroke-linecap="round"></path>
+                <polyline id="Stroke-227" stroke-linecap="round" stroke-linejoin="round" points="24 23 22 29 26 29 24 35"></polyline>
+                <path d="M10,27 L10,35" id="Stroke-433" stroke-linecap="round"></path>
+                <path d="M18,27 L18,35" id="Stroke-433" stroke-linecap="round"></path>
+                <path d="M14,27 L14,32" id="Stroke-435" stroke-linecap="round"></path>
+                <path d="M20.9209,8.7993 C22.3889,7.0863 24.5669,6.0003 26.9999,6.0003 C31.4179,6.0003 34.9999,9.5813 34.9999,14.0003 C34.9999,15.7013 34.4689,17.2783 33.5639,18.5753" id="Stroke-213"></path>
+                <path d="M27,0 L27,2" id="Stroke-215" stroke-linecap="round"></path>
+                <path d="M41,14 L39,14" id="Stroke-217" stroke-linecap="round"></path>
+                <path d="M36.8994,4.1006 L35.4854,5.5146" id="Stroke-219" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

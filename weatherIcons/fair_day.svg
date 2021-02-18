@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="47px" height="42px" viewBox="0 0 47 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>02-light-cloud-sun</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-127.000000, -103.000000)">
+            <g id="02-light-cloud-sun" transform="translate(128.000000, 104.000000)">
+                <g id="Group-3--sun" transform="translate(1.000000, 24.000000)"></g>
+                <g id="Group-2--sun" stroke="#FFFFFF" stroke-width="2">
+                    <path d="M6,32 C6,28.6862 8.6862,26 12,26 C15.3138,26 18,28.6862 18,32" id="Stroke-1"></path>
+                    <path d="M8.66666667,35.3333333 C8.66666667,32.9406111 6.72605556,31 4.33333333,31 C1.94061111,31 0,32.9406111 0,35.3333333 C0,37.7260556 1.94061111,39.6666667 4.33333333,39.6666667 L21.6666667,39.6666667 C24.0593889,39.6666667 26,37.7260556 26,35.3333333 C26,32.9406111 24.0593889,31 21.6666667,31 L18.7777778,31" id="Stroke-3" stroke-linecap="round"></path>
+                    <path d="M26,0 L26,4" id="Stroke-357" stroke-linecap="round"></path>
+                    <path d="M12.5649,5.5649 L15.3939,8.3939" id="Stroke-358" stroke-linecap="round"></path>
+                    <path d="M39.4346,32.4351 L36.6066,29.6061" id="Stroke-362" stroke-linecap="round"></path>
+                    <path d="M45,19 L41,19" id="Stroke-363" stroke-linecap="round"></path>
+                    <path d="M12,19 L8,19" id="Stroke-363" stroke-linecap="round"></path>
+                    <path d="M39.4346,5.5649 L36.6066,8.3939" id="Stroke-364" stroke-linecap="round"></path>
+                    <path d="M35,19 C35,23.971 30.971,28 26,28 C21.029,28 17,23.971 17,19 C17,14.029 21.029,10 26,10 C30.971,10 35,14.029 35,19 Z" id="Stroke-365" stroke-linecap="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
