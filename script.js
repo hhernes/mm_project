@@ -2,18 +2,123 @@
 let lat = 59.9299;
 let lon = 10.7149;
 
-// NSR Stopplace ID:
+// NSR Stopplace ID Vigelandsparken:
 let NSR_id = 58355;
+
+// NSR info
+// https://developer.entur.org/pages-nsr-nsr
+// NSR id Sagene: 59894
+
+const hideElements = () => {
+  let objects = document.getElementsByClassName('modules')
+  console.log(objects.length)
+  for (let i = 0; i < objects.length; i++) {
+    objects[i].style.display = "none"
+  }
+  
+}
+
+const getStoredItems = () => {
+  nsrIdString = localStorage.getItem('nsrId')
+  coordinatesString = localStorage.getItem('coordinates')
+  stationsString = localStorage.getItem('stationIds')
+}
+
+const isCoordinatesValid = (coordinateString) => {
+  let coordinates = coordinateString.split(",")
+  latitude = Number.parseFloat(coordinates[0])
+  longitude = Number.parseFloat(coordinates[1])
+  if (isNaN(latitude) || isNaN(longitude)) {
+    document.getElementById('coordinatesText').innerHTML = "Input not valid"
+    return false
+  } else {
+    document.getElementById('coordinatesText').innerHTML = ""
+    return true
+  }
+}
+
+const isNsrIdValid = (nsrIdInput) => {
+  let NSR_id  = parseInt(nsrIdInput)
+  if (isNaN(NSR_id)) {
+    document.getElementById('nsrText').innerHTML = "Input not valid"
+    return false
+  } else {
+    document.getElementById('nsrText').innerHTML = ""
+    return true
+  }
+}
+
+const isStationIdsValid = (stationsInput) => {
+  let stations = stationsInput.split(",")
+  for (let i = 0; i < stations.length; i++) {
+    const stationId = stations[i];
+    if (isNaN(parseInt(stationId))) {
+      document.getElementById('stationsText').innerHTML = "Input not valid"
+      return false
+    }
+
+    
+    
+    return true
+
+    
+  }
+
+  let NSR_id  = parseInt(nsrIdInput)
+  if (isNaN(NSR_id)) {
+    document.getElementById('nsrText').innerHTML = "Input not valid"
+    return false
+  } else {
+    document.getElementById('nsrText').innerHTML = ""
+    
+    return true
+  }
+}
+
+const setStoredItems = () => {
+  let coordinatesInput = document.getElementById('coordinates').value
+  let coordinates = isCoordinatesValid(coordinatesInput)
+
+  let nsrIdInput = document.getElementById('nsrIds').value
+  let nsrId = isNsrIdValid(nsrIdInput)
+
+  let stationsInput = document.getElementById('stationIds').value
+  let stations = isStationIdsValid(stationsInput)
+
+  if (coordinates && nsrId && stations) {
+    localStorage.setItem('coordinates', coordinatesInput)
+    localStorage.setItem('nsrId', nsrIdInput)
+    localStorage.setItem('stationIds', stationsInput)
+  }
+
+}
+
+document.getElementById('submitButton').onclick = () => {
+  setStoredItems()
+}
+
+const getData = () => {
+  document.getElementById("inputs").innerHTML = inputElements;
+}
+
+if(!localStorage.getItem('nsrId')) {
+  console.log("No prev storage")
+  hideElements()
+} else {
+  document.getElementById("inputs").style.display = "none"
+  console.log("Found storage")
+}
+localStorage.clear()
+
+
+
+
 
 // Api endpoints
 
-let sunriseDate = dayjs().format('YYYY-MM-DD')
-console.log(sunriseDate)
 let forecastEndpoint = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${lat}&lon=${lon}`
 let cityBikeStatusEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json';
 let cityBikeInfoEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json';
-// might have t oupdate this in the weather function
-let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${lat}&lon=${lon}&date=${sunriseDate}&offset=+01:00`;
 let enturEndpoint = 'https://api.entur.io/journey-planner/v2/graphql';
 
 dayjs.extend(window.dayjs_plugin_localizedFormat)
@@ -299,6 +404,7 @@ const getSunriseAndSunsetTimes = (sunriseData) => {
 }
 
 const getWeatherData = () => {
+  let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${lat}&lon=${lon}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
   let firstCall = fetch(forecastEndpoint, headers)
   let secondCall = fetch(sunriseEndpoint, headers)
   Promise.all([firstCall, secondCall])
@@ -431,5 +537,5 @@ const formatForecast = (weather, day) => {
 }
 
 
-getWeatherData();
-setInterval(getWeatherData, 300000);
+// getWeatherData();
+// setInterval(getWeatherData, 300000);

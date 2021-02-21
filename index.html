@@ -14,10 +14,23 @@ Se Terms Of Service
 </head>
 <html>
   <body>
-      <div id="timeModule"></div>
-      <div id="weather"></div>
-      <div id="citybike"></div>
-      <div id="entur">No departures</div>
+      <div class="modules" id="timeModule"></div>
+      <div class="modules" id="weather"></div>
+      <div class="modules" id="citybike"></div>
+      <div class="modules" id="entur">No departures</div>
+      <div id="inputs">
+        <h1 id="setup">Setup</h1>
+        <label for="coordinates">Location coordinates (latitude and longitude separated by ","):</label>
+        <input type="text" id="coordinates">
+        <div class="infoText" id="coordinatesText"></div>
+        <label for="nsrIds">Enter NSR ids:</label>
+        <input id="nsrIds">
+        <div class="infoText" id="nsrText"></div>
+        <label for="stationsIds">Enter station id(s) for Oslo City bike:</label>
+        <input id="stationIds">
+        <div class="infoText" id="stationsText"></div>
+        <button id="submitButton">Submit</button>
+      </div>
       <script type="text/javascript" src="script.js"> </script>
       <!-- The core Firebase JS SDK is always required and must be listed first -->
       <script src="/__/firebase/7.6.0/firebase-app.js"></script>

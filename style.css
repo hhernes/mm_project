@@ -6,6 +6,34 @@
   /* font-size: 20px; */
 }
 
+#inputs {
+  width: fit-content;
+  margin: 10px;
+  padding: 15px;
+}
+
+#submitButton {
+  margin-top: 15px;
+}
+
+#inputs, label, button, #setup {
+  display: block;
+  color: black;
+  background-color: white;
+}
+
+.infoText {
+  display: inline;
+  color: red;
+  background-color: white;
+}
+
+input {
+  margin-bottom: 10px;
+  color: black;
+  background-color: white;
+}
+
 #timeModule {
   position: fixed;
   top: 1%;
