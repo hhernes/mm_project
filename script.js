@@ -1,24 +1,26 @@
 
 const hideElements = () => {
   let objects = document.getElementsByClassName('modules')
-  console.log(objects.length)
   for (let i = 0; i < objects.length; i++) {
     objects[i].style.display = 'none'
+  }
+}
+
+const showElements = () => {
+  let objects = document.getElementsByClassName('modules')
+  console.log(objects.length)
+  for (let i = 0; i < objects.length; i++) {
+    objects[i].style.display = 'block'
   }  
 }
 
 const parseCoordinates = (coordinateString) => {
   let coordinates = coordinateString.split(',')
-  latitude = Number.parseFloat(coordinates[0])
-  longitude = Number.parseFloat(coordinates[1])
-  return latitude, longitude
+  latitude = Number.parseFloat(coordinates[0]).toFixed(4)
+  longitude = Number.parseFloat(coordinates[1]).toFixed(4)
+  return [latitude, longitude]
 }
 
-const getStoredItems = () => {
-  nsrIdString = localStorage.getItem('nsrId')
-  coordinatesString = localStorage.getItem('coordinates')
-  stationsString = localStorage.getItem('stationIds')
-}
 
 const isCoordinatesValid = (coordinateString) => {
   let coordinates = coordinateString.split(',')
@@ -44,22 +46,35 @@ const isNsrIdValid = (nsrIdInput) => {
   }
 }
 
-const isStationIdsValid = (stationsInput) => {
-  console.log("Station input: " + stationsInput)
-  const stations = stationsInput.split(",")
-  // console.log("Stations: " + stations)
-  console.log(stations)
-  for (let i = 0; i < stations.length; i++) {
-    const stationId = stations[i];
-    console.log(parseInt(stationId))
-    if (isNaN(parseInt(stationId))) {
-      document.getElementById('stationsText').innerHTML = 'Input not valid'
-      return false
-    }
+const getStationId = (stationName) => {
+  let stations = stations_json.data.stations
+  let filtered_stations = stations.filter(stat => stat.name === stationName)
+  if (filtered_stations.length != 1) {
+    return null
   }
-  return true
+  return filtered_stations[0].station_id
 }
 
+const isStationsValid = (stationsInput) => {
+  const stations_list = stationsInput.split(",")
+  stations = {data: []}
+  for (let i = 0; i < stations_list.length; i++) {
+    const stationName = stations_list[i].trim();
+    if (stationName == "") {
+      document.getElementById('stationsText').innerHTML = 'Input is not valid'
+      return null
+    }
+
+    let stationId = getStationId(stationName)
+    if (stationId == null) {
+      document.getElementById('stationsText').innerHTML = stationName + ' is not valid'
+      return null
+    }
+    stations.data.push({"name": stationName, "id": stationId})
+  }
+
+  return stations
+}
 
 const setStoredItems = () => {
   let coordinatesInput = document.getElementById('coordinates').value
@@ -69,22 +84,18 @@ const setStoredItems = () => {
   let nsrId = isNsrIdValid(nsrIdInput)
 
   let stationsInput = document.getElementById('stationIds').value
-  let stations = isStationIdsValid(stationsInput)
-
+  let stations = isStationsValid(stationsInput)
+  
   if (coordinates && nsrId && stations) {
+    console.log("Saved to local storage")
     localStorage.setItem('coordinates', coordinatesInput)
     localStorage.setItem('nsrId', nsrIdInput)
-    localStorage.setItem('stationIds', stationsInput)
+    localStorage.setItem('stationIds', JSON.stringify(stations))
+    document.getElementById("inputs").style.display = "none"
+    showElements()
+    location.reload()
   }
 
-}
-
-document.getElementById('submitButton').onclick = () => {
-  setStoredItems()
-}
-
-const getData = () => {
-  document.getElementById('inputs').innerHTML = inputElements;
 }
 
 dayjs.extend(window.dayjs_plugin_localizedFormat)
@@ -121,16 +132,12 @@ const renderTimeModule = () => {
 
 setInterval(renderTimeModule, 1000);
 
-
-
-let cityBikeElement;
-
-const getCityBikeData = (url, headers) => {
+const getCityBikeData = (url, headers, stations) => {
   fetch(url, headers)
   .then(res => res.json())
   .then(cityBikeData => {
     let cityBikeElement = initilizeCityBikeElement();
-    addStationData(cityBikeData, cityBikeElement);
+    addStationData(cityBikeData, cityBikeElement, stations);
   })
 }
 
@@ -144,20 +151,22 @@ const initilizeCityBikeElement = () => {
     `;
 };
 
-const addStationData = (cityBikeData, cityBikeElement) => {
+const addStationData = (cityBikeData, cityBikeElement, stations) => {
   let stationsDataArray = cityBikeData.data.stations;
   stationsDataArray.forEach(station => {
-    if (stations_map.has(station.station_id)) {
-      cityBikeElement += addStationToModule(station);
-    }
+    stations.data.forEach(saved_station => {
+      if (station.station_id === saved_station.id) {
+        cityBikeElement += addStationToModule(saved_station.name, station);
+      }
+    })
   })
   document.getElementById('citybike').innerHTML = cityBikeElement;
 };
 
-const addStationToModule = (station) => {
+const addStationToModule = (stationName, station) => {
   return `
     <div class="row">
-      <a class="station">${stations_map.get(station.station_id)}</a>
+      <a class="station">${stationName}</a>
       <a class="bikes">${station.num_bikes_available}</a>
       <a class="bikes">${station.num_docks_available}</a>
     </div>
@@ -185,7 +194,7 @@ const handleData = (data) => {
     }
     insertDeparture(dep.expectedArrivalTime)
   });
-  if (departures.length == 0) {
+  if (departures.length === 0) {
     document.getElementById('entur').innerHTML = 'No departures';
   }
 }
@@ -269,15 +278,18 @@ const getSunriseAndSunsetTimes = (sunriseData) => {
 }
 
 const getWeatherData = (forecastEndpoint, sunriseEndpoint, headers) => {
-  let firstCall = fetch(forecastEndpoint, headers)
-  let secondCall = fetch(sunriseEndpoint, headers)
-  Promise.all([firstCall, secondCall])
-  .then(values => Promise.all(values.map(value => value.text())))
-  .then(data => {
-    let forecastData = JSON.parse(data[0]);
-    let sunriseData = (new DOMParser().parseFromString(data[1], 'text/xml')).getElementsByTagName('location')[0].getElementsByTagName('time')[0];
-    weather(forecastData, sunriseData);
-    })
+  if (expires.isBefore(dayjs())) {
+    let firstCall = fetch(forecastEndpoint, headers)
+    let secondCall = fetch(sunriseEndpoint, headers)
+    firstCall.then(response => expires = dayjs(response.headers.get('expires')))
+    Promise.all([firstCall, secondCall])
+    .then(values => Promise.all(values.map(value => value.text())))
+    .then(data => {
+      let forecastData = JSON.parse(data[0]);
+      let sunriseData = (new DOMParser().parseFromString(data[1], 'text/xml')).getElementsByTagName('location')[0].getElementsByTagName('time')[0];
+      weather(forecastData, sunriseData);
+      }) 
+  }
 }
 
 const formatPrecipitation = (precipitation) => {
@@ -292,7 +304,7 @@ const makeWeatherList = (forecastList) => {
   let weatherList = []
   for (let i = 0; i < forecastList.length - 1; i++) {
     let timeStamp =  dayjs.utc(forecastList[i].time, 'YYYY-MM-DDTHH-mm-ssZ')
-    
+
     let temperature = Math.round(forecastList[i].data.instant.details.air_temperature)
     let symbolCode, precipitation, precipitationMin, precipitationMax,
         nextSixHoursTemperatureMax, nextSixHoursTemperatureMin, nextSixHoursPrecipitationMax,
@@ -402,46 +414,19 @@ const formatForecast = (weather, day) => {
   `;
 }
 
-
-
-
-
-
-let lat 
-let lon
-// Frogner
-lat = 59.9299;
-lon = 10.7149;
-// NSR Stopplace ID Vigelandsparken:
-// 58355;
-// let NSR_id = 58355;
-// let NSR_id = 58355;
-
-// Oslo Citybike Stations:
-let stations_map = new Map([
-    ['395', 'Frogner Tennisklubb'], 
-    ['436', 'Vestkanttorvet']
-]);
-
-// NSR info
-// https://developer.entur.org/pages-nsr-nsr
-// NSR id Sagene: 59894
-// let NSR_id
-//  = 59894;
-
-
-
-
 // Api endpoints
 let cityBikeStatusEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json';
 let enturEndpoint = 'https://api.entur.io/journey-planner/v2/graphql';
 let cityBikeInfoEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json';
 
+// Initialize the expires timestamp which will be compared to the expires header from met API
+let expires = dayjs(0)
+
 // Request headers
 const metApiHeaders = {
   method: 'GET',
   mode: 'cors',
-  headers: {'User-agent': 'MagicMirror github.com/hhernes'},
+  headers: {'User-Agent': 'MagicMirror github.com/hhernes'},
 };
 
 const osloCityBikeHeaders = {
@@ -452,43 +437,41 @@ const osloCityBikeHeaders = {
   }
 };
 
+let stations_json;
 
-
-//let stations_json;
-
-
-const getCityBikeStationData = (url) => {
-  fetch(url, osloCityBikeHeaders)
+const getCityBikeStationData = (url, headers) => {
+  fetch(url, headers)
   .then(res => res.json())
   .then(station_data => {
-    return station_data
+    stations_json = station_data
+    document.getElementById("inputs").style.display = "block"
+  })
+  .catch(e => {
+    document.getElementById("inputs").style.display = "block"
+    console.log(e)
   })
 }
 
-let stations_json = getCityBikeStationData(cityBikeInfoEndpoint)
-console.log(stations_json)
 
-// Check if everything is setup
+document.getElementById('submitButton').onclick = () => {
+  setStoredItems()
+}
+
 if (!localStorage.getItem('nsrId')) {
-  console.log("No prev storage")
   hideElements()
+  getCityBikeStationData(cityBikeInfoEndpoint)
 } else {
   document.getElementById("inputs").style.display = "none"
-  console.log("Found storage")
 }
-localStorage.clear()
-
-
-
 
 if (localStorage.getItem('coordinates')) {
-  let latitude, longitude = parseCoordinates(localStorage.getItem('coordinates'));
-  console.log(latitude)
-  console.log(longitude)
+  let coordinates = parseCoordinates(localStorage.getItem('coordinates'));
+  let latitude = coordinates[0]
+  let longitude = coordinates[1]
   let forecastEndpoint = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`
   let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${latitude}&lon=${longitude}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
   getWeatherData(forecastEndpoint, sunriseEndpoint, metApiHeaders);
-  setInterval(getWeatherData, 300000, forecastEndpoint, sunriseEndpoint, metApiHeaders);
+  setInterval(getWeatherData, 60000, forecastEndpoint, sunriseEndpoint, metApiHeaders);
 }
 
 
@@ -518,7 +501,8 @@ if (localStorage.getItem('nsrId')) {
         }
       }
     }
-`;
+  `;
+
   const enturHeaders = {
     method: 'POST',
     headers: {
@@ -526,13 +510,14 @@ if (localStorage.getItem('nsrId')) {
       'ET-Client-Name': 'MagicMirror github.com/hhernes'
     },
     body: JSON.stringify({query})
-};
+  };
 
   renderPublicTransportModule(enturEndpoint, enturHeaders);
   setInterval(renderPublicTransportModule, 5000, enturEndpoint, enturHeaders);
 }
 
 if (localStorage.getItem('stationIds')) {
-  getCityBikeData(cityBikeStatusEndpoint, osloCityBikeheaders);
-  setInterval(getCityBikeData, 20000, cityBikeStatusEndpoint, osloCityBikeheaders);  
+  let stations = JSON.parse(localStorage.getItem('stationIds'))
+  getCityBikeData(cityBikeStatusEndpoint, osloCityBikeHeaders, stations);
+  setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeHeaders, stations);  
 }

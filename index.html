@@ -21,14 +21,14 @@ Se Terms Of Service
       <div class="modules" id="entur">No departures</div>
       <div id="inputs">
         <h1 id="setup">Setup</h1>
-        <label for="coordinates">Location coordinates (latitude and longitude separated by ","):</label>
-        <input type="text" id="coordinates">
+        <label for="coordinates">Enter location coordinates<br/>(latitude and longitude separated by ","):</label>
+        <input type="text" id="coordinates" placeholder="e.g 59.9171,10.7274">
         <div class="infoText" id="coordinatesText"></div>
-        <label for="nsrIds">Enter NSR ids:</label>
-        <input id="nsrIds">
+        <label for="nsrIds">Enter NSR id: <a id="infoSign" href="https://developer.entur.org/pages-nsr-nsr" target="_blank">&#9432;</a></label>
+        <input id="nsrIds" placeholder="e.g 59894">
         <div class="infoText" id="nsrText"></div>
-        <label for="stationsIds">Enter station id(s) for Oslo City bike:</label>
-        <input id="stationIds">
+        <label for="stationsIds">Enter Oslo City Bike station name(s):<br/>(Multiple stations should be separated by ",")</label>
+        <input id="stationIds" placeholder="e.g Aker Brygge,Tjuvholmen,Dokkveien">
         <div class="infoText" id="stationsText"></div>
         <button id="submitButton">Submit</button>
       </div>

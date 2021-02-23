@@ -6,14 +6,10 @@
   /* font-size: 20px; */
 }
 
-#inputs {
-  width: fit-content;
-  margin: 10px;
-  padding: 15px;
-}
+
 
 #submitButton {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 #inputs, label, button, #setup {
@@ -22,16 +18,33 @@
   background-color: white;
 }
 
+label {
+  margin-top: 15px;
+}
+
+#inputs {
+  width: fit-content;
+  margin: 10px;
+  padding: 15px;
+  display: none;
+}
+
 .infoText {
-  display: inline;
+  display: block;
   color: red;
   background-color: white;
 }
 
+#infoSign {
+  text-decoration-line: none;
+  color: blue;
+  background-color: white;
+}
+
 input {
-  margin-bottom: 10px;
   color: black;
   background-color: white;
+  width: 80%
 }
 
 #timeModule {
