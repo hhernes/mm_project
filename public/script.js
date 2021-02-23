@@ -1,107 +1,107 @@
 
 const hideElements = () => {
-  let objects = document.getElementsByClassName('modules')
+  let objects = document.getElementsByClassName('modules');
   for (let i = 0; i < objects.length; i++) {
-    objects[i].style.display = 'none'
+    objects[i].style.display = 'none';
   }
 }
 
 const showElements = () => {
-  let objects = document.getElementsByClassName('modules')
-  console.log(objects.length)
+  let objects = document.getElementsByClassName('modules');
+  console.log(objects.length);
   for (let i = 0; i < objects.length; i++) {
-    objects[i].style.display = 'block'
+    objects[i].style.display = 'block';
   }  
 }
 
 const parseCoordinates = (coordinateString) => {
-  let coordinates = coordinateString.split(',')
-  latitude = Number.parseFloat(coordinates[0]).toFixed(4)
-  longitude = Number.parseFloat(coordinates[1]).toFixed(4)
-  return [latitude, longitude]
+  let coordinates = coordinateString.split(',');
+  latitude = Number.parseFloat(coordinates[0]).toFixed(4);
+  longitude = Number.parseFloat(coordinates[1]).toFixed(4);
+  return [latitude, longitude];
 }
 
 
 const isCoordinatesValid = (coordinateString) => {
-  let coordinates = coordinateString.split(',')
-  latitude = Number.parseFloat(coordinates[0])
-  longitude = Number.parseFloat(coordinates[1])
+  let coordinates = coordinateString.split(',');
+  latitude = Number.parseFloat(coordinates[0]);
+  longitude = Number.parseFloat(coordinates[1]);
   if (isNaN(latitude) || isNaN(longitude)) {
-    document.getElementById('coordinatesText').innerHTML = 'Input not valid'
-    return false
+    document.getElementById('coordinatesText').innerHTML = 'Input not valid';
+    return false;
   } else {
-    document.getElementById('coordinatesText').innerHTML = ''
-    return true
+    document.getElementById('coordinatesText').innerHTML = '';
+    return true;
   }
 }
 
 const isNsrIdValid = (nsrIdInput) => {
-  let NSR_id  = parseInt(nsrIdInput)
+  let NSR_id  = parseInt(nsrIdInput);
   if (isNaN(NSR_id)) {
-    document.getElementById('nsrText').innerHTML = 'Input not valid'
-    return false
+    document.getElementById('nsrText').innerHTML = 'Input not valid';
+    return false;
   } else {
-    document.getElementById('nsrText').innerHTML = ''
-    return true
+    document.getElementById('nsrText').innerHTML = '';
+    return true;
   }
 }
 
 const getStationId = (stationName) => {
-  let stations = stations_json.data.stations
-  let filtered_stations = stations.filter(stat => stat.name === stationName)
+  let stations = stations_json.data.stations;
+  let filtered_stations = stations.filter(stat => stat.name === stationName);
   if (filtered_stations.length != 1) {
-    return null
+    return null;
   }
-  return filtered_stations[0].station_id
+  return filtered_stations[0].station_id;
 }
 
 const isStationsValid = (stationsInput) => {
-  const stations_list = stationsInput.split(",")
-  stations = {data: []}
+  const stations_list = stationsInput.split(",");
+  stations = {data: []};
   for (let i = 0; i < stations_list.length; i++) {
     const stationName = stations_list[i].trim();
     if (stationName == "") {
-      document.getElementById('stationsText').innerHTML = 'Input is not valid'
-      return null
+      document.getElementById('stationsText').innerHTML = 'Input is not valid';
+      return null;
     }
 
-    let stationId = getStationId(stationName)
+    let stationId = getStationId(stationName);
     if (stationId == null) {
-      document.getElementById('stationsText').innerHTML = stationName + ' is not valid'
-      return null
+      document.getElementById('stationsText').innerHTML = stationName + ' is not valid';
+      return null;
     }
-    stations.data.push({"name": stationName, "id": stationId})
+    stations.data.push({"name": stationName, "id": stationId});
   }
 
-  return stations
+  return stations;
 }
 
 const setStoredItems = () => {
-  let coordinatesInput = document.getElementById('coordinates').value
-  let coordinates = isCoordinatesValid(coordinatesInput)
+  let coordinatesInput = document.getElementById('coordinates').value;
+  let coordinates = isCoordinatesValid(coordinatesInput);
 
-  let nsrIdInput = document.getElementById('nsrIds').value
-  let nsrId = isNsrIdValid(nsrIdInput)
+  let nsrIdInput = document.getElementById('nsrIds').value;
+  let nsrId = isNsrIdValid(nsrIdInput);
 
-  let stationsInput = document.getElementById('stationIds').value
-  let stations = isStationsValid(stationsInput)
+  let stationsInput = document.getElementById('stationIds').value;
+  let stations = isStationsValid(stationsInput);
   
   if (coordinates && nsrId && stations) {
-    console.log("Saved to local storage")
-    localStorage.setItem('coordinates', coordinatesInput)
-    localStorage.setItem('nsrId', nsrIdInput)
-    localStorage.setItem('stationIds', JSON.stringify(stations))
-    document.getElementById("inputs").style.display = "none"
-    showElements()
-    location.reload()
+    console.log("Saved to local storage");
+    localStorage.setItem('coordinates', coordinatesInput);
+    localStorage.setItem('nsrId', nsrIdInput);
+    localStorage.setItem('stationIds', JSON.stringify(stations));
+    document.getElementById("inputs").style.display = 'none';
+    showElements();
+    location.reload();
   }
 
 }
 
-dayjs.extend(window.dayjs_plugin_localizedFormat)
-dayjs.extend(window.dayjs_plugin_updateLocale)
-dayjs.extend(window.dayjs_plugin_relativeTime)
-dayjs.extend(window.dayjs_plugin_utc)
+dayjs.extend(window.dayjs_plugin_localizedFormat);
+dayjs.extend(window.dayjs_plugin_updateLocale);
+dayjs.extend(window.dayjs_plugin_relativeTime);
+dayjs.extend(window.dayjs_plugin_utc);
 
 dayjs.updateLocale('en', {
   relativeTime: {
@@ -119,7 +119,7 @@ dayjs.updateLocale('en', {
     y: "a year",
     yy: "%d years"
   }
-})
+});
 
 
 const renderTimeModule = () => {
@@ -138,7 +138,7 @@ const getCityBikeData = (url, headers, stations) => {
   .then(cityBikeData => {
     let cityBikeElement = initilizeCityBikeElement();
     addStationData(cityBikeData, cityBikeElement, stations);
-  })
+  });
 }
 
 const initilizeCityBikeElement = () => {
@@ -170,7 +170,7 @@ const addStationToModule = (stationName, station) => {
       <a class="bikes">${station.num_bikes_available}</a>
       <a class="bikes">${station.num_docks_available}</a>
     </div>
-`;
+  `;
 }
 
 
@@ -179,20 +179,20 @@ const renderPublicTransportModule = (url, headers) => {
   .then((res) => res.json())
   .then((data) => {
     handleData(data);
-  })
+  });
 };
 
 const handleData = (data) => {
-  let departures = data.data.stopPlace.estimatedCalls
+  let departures = data.data.stopPlace.estimatedCalls;
   document.getElementById('entur').innerHTML = `<div id="departures"></div>`;
   insertedDepartures = [];
   departures.forEach(dep => {
-    departureName = dep.serviceJourney.journeyPattern.line.publicCode + ' ' + dep.destinationDisplay.frontText
+    departureName = dep.serviceJourney.journeyPattern.line.publicCode + ' ' + dep.destinationDisplay.frontText;
     if (!insertedDepartures.includes(departureName)) {
       insertedDepartures.push(departureName);
       createAndInsertNewElement(departureName);
     }
-    insertDeparture(dep.expectedArrivalTime)
+    insertDeparture(dep.expectedArrivalTime);
   });
   if (departures.length === 0) {
     document.getElementById('entur').innerHTML = 'No departures';
@@ -202,7 +202,7 @@ const handleData = (data) => {
 const createAndInsertNewElement = () => {
   let newElement = createNewElement();
   insertElement(newElement, departureName);
-  insertNewDeparture(newElement)
+  insertNewDeparture(newElement);
 }
 
 const createNewElement = () => {
@@ -222,28 +222,28 @@ const insertElement = (element, departureName) => {
 
 const insertNewDeparture = (element) => {
   element.innerHTML = `<a class="fronttext" >${departureName}</a>`;
-  element.appendChild(document.createElement('ul'))
+  element.appendChild(document.createElement('ul'));
 }
 
 const insertDeparture = (expectedArrivalTime) => {
   if (document.getElementById(departureName).childNodes.length < 6) {        
     let newNode = document.createElement('a');
-    newNode.setAttribute('class', 'timestamp')
-    document.getElementById(departureName).appendChild(newNode)
-    newNode.innerHTML = formatDepartureTime(expectedArrivalTime)
+    newNode.setAttribute('class', 'timestamp');
+    document.getElementById(departureName).appendChild(newNode);
+    newNode.innerHTML = formatDepartureTime(expectedArrivalTime);
   }
 }
 
 const handleError = () => {
-  document.getElementById('entur').innerHTML = 'No connection'
+  document.getElementById('entur').innerHTML = 'No connection';
 }
 
 const formatDepartureTime = (timestamp) => { 
   let formattedTime = timestamp;
   if (dayjs(timestamp).diff(dayjs(), 'minutes') < 15) {
-    formattedTime = dayjs(timestamp).fromNow()
+    formattedTime = dayjs(timestamp).fromNow();
   } else {
-    formattedTime = dayjs(timestamp).format('HH:mm')
+    formattedTime = dayjs(timestamp).format('HH:mm');
   }
   return formattedTime;
 }
@@ -270,49 +270,51 @@ class Weather {
 }
 
 const getSunriseAndSunsetTimes = (sunriseData) => {
-  const arr = []
+  const arr = [];
   let sunriseTime = sunriseData.getElementsByTagName('sunrise')[0].getAttribute('time');
   let sunsetTime = sunriseData.getElementsByTagName('sunset')[0].getAttribute('time');
-  arr.push(dayjs(sunriseTime, 'YYYY-MM-DDTHH:mm:ssZ').format('HH:mm'), dayjs(sunsetTime, 'YYYY-MM-DDTHH:mm:ssZ').format('HH:mm'))
-  return arr
+  arr.push(dayjs(sunriseTime, 'YYYY-MM-DDTHH:mm:ssZ').format('HH:mm'), dayjs(sunsetTime, 'YYYY-MM-DDTHH:mm:ssZ').format('HH:mm'));
+  return arr;
 }
 
-const getWeatherData = (forecastEndpoint, sunriseEndpoint, headers) => {
+const getWeatherData = (latitude, longitude, headers) => {
+  let forecastEndpoint = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
+  let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${latitude}&lon=${longitude}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
   if (expires.isBefore(dayjs())) {
-    let firstCall = fetch(forecastEndpoint, headers)
-    let secondCall = fetch(sunriseEndpoint, headers)
-    firstCall.then(response => expires = dayjs(response.headers.get('expires')))
+    let firstCall = fetch(forecastEndpoint, headers);
+    let secondCall = fetch(sunriseEndpoint, headers);
+    firstCall.then(response => expires = dayjs(response.headers.get('expires')));
     Promise.all([firstCall, secondCall])
     .then(values => Promise.all(values.map(value => value.text())))
     .then(data => {
       let forecastData = JSON.parse(data[0]);
       let sunriseData = (new DOMParser().parseFromString(data[1], 'text/xml')).getElementsByTagName('location')[0].getElementsByTagName('time')[0];
       weather(forecastData, sunriseData);
-      }) 
+    });
   }
 }
 
 const formatPrecipitation = (precipitation) => {
   if (precipitation >= 10) {
-    return Math.round(precipitation)
+    return Math.round(precipitation);
   } else {
-    return precipitation
+    return precipitation;
   }
 }
 
 const makeWeatherList = (forecastList) => {
-  let weatherList = []
+  let weatherList = [];
   for (let i = 0; i < forecastList.length - 1; i++) {
-    let timeStamp =  dayjs.utc(forecastList[i].time, 'YYYY-MM-DDTHH-mm-ssZ')
+    let timeStamp =  dayjs.utc(forecastList[i].time, 'YYYY-MM-DDTHH-mm-ssZ');
 
-    let temperature = Math.round(forecastList[i].data.instant.details.air_temperature)
+    let temperature = Math.round(forecastList[i].data.instant.details.air_temperature);
     let symbolCode, precipitation, precipitationMin, precipitationMax,
         nextSixHoursTemperatureMax, nextSixHoursTemperatureMin, nextSixHoursPrecipitationMax,
-        nextSixHoursPrecipitationMin, nextSixHoursSymbolCode
+        nextSixHoursPrecipitationMin, nextSixHoursSymbolCode;
 
     if (forecastList[i].data.hasOwnProperty('next_1_hours')) {
-      symbolCode = forecastList[i].data.next_1_hours.summary.symbol_code
-      precipitation = formatPrecipitation(forecastList[i].data.next_1_hours.details.precipitation_amount)
+      symbolCode = forecastList[i].data.next_1_hours.summary.symbol_code;
+      precipitation = formatPrecipitation(forecastList[i].data.next_1_hours.details.precipitation_amount);
       precipitationMin = formatPrecipitation(forecastList[i].data.next_1_hours.details.precipitation_amount_min)
       precipitationMax = formatPrecipitation(forecastList[i].data.next_1_hours.details.precipitation_amount_max) 
     }
@@ -331,15 +333,15 @@ const makeWeatherList = (forecastList) => {
                   nextSixHoursTemperatureMax, nextSixHoursTemperatureMin,
                   nextSixHoursPrecipitationMax, nextSixHoursPrecipitationMin,
                   nextSixHoursSymbolCode)
-    )
+    );
   }
-  return weatherList
+  return weatherList;
 }
 
 const weather = (forecastData, sunriseData) => {
-  let sunsetAndSunriseTimes = getSunriseAndSunsetTimes(sunriseData)
-  let forecastTimeseries = forecastData.properties.timeseries
-  let weatherList = makeWeatherList(forecastTimeseries)
+  let sunsetAndSunriseTimes = getSunriseAndSunsetTimes(sunriseData);
+  let forecastTimeseries = forecastData.properties.timeseries;
+  let weatherList = makeWeatherList(forecastTimeseries);
   let weatherElement = `
         <div class="tempNowContainer">
           <div class="tempnow" id="temperatureNow">${weatherList[0].temperature + '&deg;'}</div>
@@ -357,26 +359,26 @@ const weather = (forecastData, sunriseData) => {
         </div>
       `;
   
-  weatherElement += getForecasts(weatherList)
+  weatherElement += getForecasts(weatherList);
   
   document.getElementById('weather').innerHTML = weatherElement;
 }
 
 
 const getForecasts = (weatherList) => {
-  let forecastElement = formatForecast(weatherList[1], false)
+  let forecastElement = formatForecast(weatherList[1], false);
  
   forecastElement += getForecast(weatherList, dayjs.utc(dayjs.utc(weatherList[1].time).add(6, 'h').set({ 'minute': 0, 'second': 0, 'millisecond': 0 })), false);
   forecastElement += getForecast(weatherList, dayjs.utc(dayjs.utc().add(1, 'd').hour(12).minute(0).second(0).millisecond(0)), true);
   forecastElement += getForecast(weatherList, dayjs.utc(dayjs.utc().add(2, 'd').hour(12).minute(0).second(0).millisecond(0)), true);
   forecastElement += getForecast(weatherList, dayjs.utc(dayjs.utc().add(3, 'd').hour(12).minute(0).second(0).millisecond(0)), true);
-  return forecastElement
+  return forecastElement;
 }
 
 const getForecast = (weatherList, timeObject, daily) => {
-  let weatherNextSixHours = weatherList.filter(element => element.time.isSame(timeObject, 'second'))[0]
+  let weatherNextSixHours = weatherList.filter(element => element.time.isSame(timeObject, 'second'))[0];
   if (weatherNextSixHours == undefined) {
-    return ''
+    return '';
   }
   return formatForecast(weatherNextSixHours, daily);
   
@@ -394,7 +396,7 @@ const formatForecast = (weather, day) => {
   if (weather.nextSixHoursTemperatureMin == weather.nextSixHoursTemperatureMax) {
     temperature = weather.nextSixHoursTemperatureMax + '&deg;';
   } else {
-    temperature = weather.nextSixHoursTemperatureMin + '&deg; / ' + weather.nextSixHoursTemperatureMax + '&deg;';
+    temperature = weather.nextSixHoursTemperatureMax + '&deg; / ' + weather.nextSixHoursTemperatureMin + '&deg;';
   }
   
   if (day) {
@@ -415,18 +417,18 @@ const formatForecast = (weather, day) => {
 }
 
 // Api endpoints
-let cityBikeStatusEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json';
 let enturEndpoint = 'https://api.entur.io/journey-planner/v2/graphql';
+let cityBikeStatusEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_status.json';
 let cityBikeInfoEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json';
 
 // Initialize the expires timestamp which will be compared to the expires header from met API
-let expires = dayjs(0)
+let expires = dayjs(0);
 
 // Request headers
 const metApiHeaders = {
   method: 'GET',
   mode: 'cors',
-  headers: {'User-Agent': 'MagicMirror github.com/hhernes'},
+  headers: {'User-Agent': 'MagicMirror github.com/hhernes'}
 };
 
 const osloCityBikeHeaders = {
@@ -443,40 +445,37 @@ const getCityBikeStationData = (url, headers) => {
   fetch(url, headers)
   .then(res => res.json())
   .then(station_data => {
-    stations_json = station_data
-    document.getElementById("inputs").style.display = "block"
+    stations_json = station_data;
+    document.getElementById("inputs").style.display = 'block';
   })
   .catch(e => {
-    document.getElementById("inputs").style.display = "block"
-    console.log(e)
+    document.getElementById("inputs").style.display = 'block';
+    console.log(e);
   })
 }
 
-
 document.getElementById('submitButton').onclick = () => {
-  setStoredItems()
+  setStoredItems();
 }
 
 if (!localStorage.getItem('nsrId')) {
-  hideElements()
-  getCityBikeStationData(cityBikeInfoEndpoint)
+  hideElements();
+  getCityBikeStationData(cityBikeInfoEndpoint);
 } else {
-  document.getElementById("inputs").style.display = "none"
+  document.getElementById("inputs").style.display = 'none';
 }
 
 if (localStorage.getItem('coordinates')) {
   let coordinates = parseCoordinates(localStorage.getItem('coordinates'));
-  let latitude = coordinates[0]
-  let longitude = coordinates[1]
-  let forecastEndpoint = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`
-  let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${latitude}&lon=${longitude}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
-  getWeatherData(forecastEndpoint, sunriseEndpoint, metApiHeaders);
-  setInterval(getWeatherData, 60000, forecastEndpoint, sunriseEndpoint, metApiHeaders);
+  let latitude = coordinates[0];
+  let longitude = coordinates[1];
+  getWeatherData(latitude, longitude, metApiHeaders);
+  setInterval(getWeatherData, 60000, latitude, longitude, metApiHeaders);
 }
 
 
 if (localStorage.getItem('nsrId')) {
-  let nsrId = parseInt(localStorage.getItem('nsrId'))
+  let nsrId = parseInt(localStorage.getItem('nsrId'));
 
   const query = `
     {
@@ -507,7 +506,7 @@ if (localStorage.getItem('nsrId')) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'ET-Client-Name': 'MagicMirror github.com/hhernes'
+      'ET-Client-Name': 'github.com/hhernes-MagicMirror'
     },
     body: JSON.stringify({query})
   };
@@ -517,7 +516,7 @@ if (localStorage.getItem('nsrId')) {
 }
 
 if (localStorage.getItem('stationIds')) {
-  let stations = JSON.parse(localStorage.getItem('stationIds'))
+  let stations = JSON.parse(localStorage.getItem('stationIds'));
   getCityBikeData(cityBikeStatusEndpoint, osloCityBikeHeaders, stations);
   setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeHeaders, stations);  
 }
