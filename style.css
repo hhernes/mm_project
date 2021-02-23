@@ -3,10 +3,7 @@
   color: white;
   background-color: black;
   font-weight: 300;
-  /* font-size: 20px; */
 }
-
-
 
 #submitButton {
   margin-top: 20px;
@@ -74,7 +71,6 @@ input {
   font-size: 20px;
 }
 
-
 .tempNowContainer {
   text-align: center;
 }
@@ -90,7 +86,6 @@ input {
 }
 
 #weatherSymbol {
-  /* TO DO */
   width: 90px;
   height: auto;
 }
@@ -105,9 +100,6 @@ input {
   border-top-style: solid;
   border-bottom-style: solid;
   font-size: 24px;
-  /* border-top: 1px; */
-  /* display: flex;
-  justify-content: center; */
   text-align: center;
 }
 
@@ -121,7 +113,6 @@ input {
 }
 
 .symbol {
-  /* margin-left: 10px; */
   display: inline-block;
   width: 60px;
   vertical-align: middle;
@@ -142,7 +133,6 @@ input {
 
 .precipitation {
  align-items: flex-end;
- /* margin-left: 10px; */
  display: inline-block;
  width: 140px;
  text-align: center;
@@ -162,15 +152,11 @@ ul {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  /* max-width: 100px; */
 }
 
 .row {
   display: flex;
   flex-basis: auto;
-  /* display: table-cell; */
-  /* vertical-align: middle; */
-  /* flex-wrap: nowrap; */
 }
 
 .station {
