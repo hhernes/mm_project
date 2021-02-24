@@ -277,12 +277,12 @@ const getSunriseAndSunsetTimes = (sunriseData) => {
   return arr;
 }
 
-const getWeatherData = (latitude, longitude, headers) => {
+const getWeatherData = (latitude, longitude) => {
   let forecastEndpoint = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
   let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${latitude}&lon=${longitude}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
   if (expires.isBefore(dayjs())) {
-    let firstCall = fetch(forecastEndpoint, headers);
-    let secondCall = fetch(sunriseEndpoint, headers);
+    let firstCall = fetch(forecastEndpoint);
+    let secondCall = fetch(sunriseEndpoint);
     firstCall.then(response => expires = dayjs(response.headers.get('expires')));
     Promise.all([firstCall, secondCall])
     .then(values => Promise.all(values.map(value => value.text())))
@@ -424,18 +424,10 @@ let cityBikeInfoEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/statio
 // Initialize the expires timestamp which will be compared to the expires header from met API
 let expires = dayjs(0);
 
-// Request headers
-const metApiHeaders = {
-  method: 'GET',
-  mode: 'cors',
-  headers: {'User-Agent': 'MagicMirror github.com/hhernes'}
-};
-
 const osloCityBikeHeaders = {
   method: 'GET',
   headers: {
-    'Accept': '*/*',
-    'Client-Identifier': 'MagicMirror github.com/hhernes',
+    'Client-Identifier': 'github.com/hhernes-MagicMirror',
   }
 };
 
@@ -469,8 +461,8 @@ if (localStorage.getItem('coordinates')) {
   let coordinates = parseCoordinates(localStorage.getItem('coordinates'));
   let latitude = coordinates[0];
   let longitude = coordinates[1];
-  getWeatherData(latitude, longitude, metApiHeaders);
-  setInterval(getWeatherData, 60000, latitude, longitude, metApiHeaders);
+  getWeatherData(latitude, longitude);
+  setInterval(getWeatherData, 60000, latitude, longitude);
 }
 
 
