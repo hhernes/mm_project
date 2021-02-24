@@ -132,8 +132,8 @@ const renderTimeModule = () => {
 
 setInterval(renderTimeModule, 1000);
 
-const getCityBikeData = (url, headers, stations) => {
-  fetch(url, headers)
+const getCityBikeData = (url, request, stations) => {
+  fetch(url, request)
   .then(res => res.json())
   .then(cityBikeData => {
     let cityBikeElement = initilizeCityBikeElement();
@@ -174,8 +174,8 @@ const addStationToModule = (stationName, station) => {
 }
 
 
-const renderPublicTransportModule = (url, headers) => {
-  fetch(url, headers)
+const renderPublicTransportModule = (url, request) => {
+  fetch(url, request)
   .then((res) => res.json())
   .then((data) => {
     handleData(data);
@@ -424,7 +424,7 @@ let cityBikeInfoEndpoint = 'https://gbfs.urbansharing.com/oslobysykkel.no/statio
 // Initialize the expires timestamp which will be compared to the expires header from met API
 let expires = dayjs(0);
 
-const osloCityBikeHeaders = {
+const osloCityBikeRequest = {
   method: 'GET',
   headers: {
     'Client-Identifier': 'github.com/hhernes-MagicMirror',
@@ -452,7 +452,7 @@ document.getElementById('submitButton').onclick = () => {
 
 if (!localStorage.getItem('nsrId')) {
   hideElements();
-  getCityBikeStationData(cityBikeInfoEndpoint);
+  getCityBikeStationData(cityBikeInfoEndpoint, osloCityBikeRequest);
 } else {
   document.getElementById("inputs").style.display = 'none';
 }
@@ -478,7 +478,7 @@ if (localStorage.getItem('nsrId')) {
             realtime
             expectedArrivalTime
             destinationDisplay {
-                frontText
+              frontText
             }
             serviceJourney {
             journeyPattern {
@@ -494,7 +494,7 @@ if (localStorage.getItem('nsrId')) {
     }
   `;
 
-  const enturHeaders = {
+  const enturRequest = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -503,12 +503,12 @@ if (localStorage.getItem('nsrId')) {
     body: JSON.stringify({query})
   };
 
-  renderPublicTransportModule(enturEndpoint, enturHeaders);
-  setInterval(renderPublicTransportModule, 5000, enturEndpoint, enturHeaders);
+  renderPublicTransportModule(enturEndpoint, enturRequest);
+  setInterval(renderPublicTransportModule, 5000, enturEndpoint, enturRequest);
 }
 
 if (localStorage.getItem('stationIds')) {
   let stations = JSON.parse(localStorage.getItem('stationIds'));
-  getCityBikeData(cityBikeStatusEndpoint, osloCityBikeHeaders, stations);
-  setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeHeaders, stations);  
+  getCityBikeData(cityBikeStatusEndpoint, osloCityBikeRequest, stations);
+  setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeRequest, stations);  
 }
