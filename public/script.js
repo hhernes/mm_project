@@ -474,7 +474,7 @@ if (localStorage.getItem('nsrId')) {
       stopPlace(id: "NSR:StopPlace:${nsrId}") {
         id
         name
-        estimatedCalls(timeRange: 3600 numberOfDepartures: 30) {
+        estimatedCalls(timeRange: 3600 numberOfDepartures: 50) {
             realtime
             expectedArrivalTime
             destinationDisplay {
