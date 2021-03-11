@@ -143,7 +143,6 @@ ul {
   margin: 0%;
 }
 
-
 #citybike {
   position: fixed;
   bottom: 1%;
@@ -206,5 +205,5 @@ ul {
 }
 
 .timestamp {
-  margin-right: 16px; 
+  margin-right: 16px;
 }
