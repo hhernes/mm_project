@@ -1,29 +1,29 @@
 
 const hideElements = () => {
   let modules = document.getElementsByClassName('modules');
-  for (object of modules) {
+  for (const object of modules) {
     object.style.display = 'none';
   }
 }
 
 const showElements = () => {
   let modules = document.getElementsByClassName('modules');
-  for (object of modules) {
+  for (const object of modules) {
     object.style.display = 'block';
   }
 }
 
 const parseCoordinates = (coordinateString) => {
-  let coordinates = coordinateString.split(',');
-  latitude = Number.parseFloat(coordinates[0]).toFixed(4);
-  longitude = Number.parseFloat(coordinates[1]).toFixed(4);
+  const coordinates = coordinateString.split(',');
+  const latitude = Number.parseFloat(coordinates[0]).toFixed(4);
+  const longitude = Number.parseFloat(coordinates[1]).toFixed(4);
   return [latitude, longitude];
 }
 
 const isCoordinatesValid = (coordinateString) => {
-  let coordinates = coordinateString.split(',');
-  let latitude = Number.parseFloat(coordinates[0]);
-  let longitude = Number.parseFloat(coordinates[1]);
+  const coordinates = coordinateString.split(',');
+  const latitude = Number.parseFloat(coordinates[0]);
+  const longitude = Number.parseFloat(coordinates[1]);
   if (isNaN(latitude) || isNaN(longitude)) {
     document.getElementById('coordinatesText').innerHTML = 'Input not valid';
     return false;
@@ -34,7 +34,7 @@ const isCoordinatesValid = (coordinateString) => {
 }
 
 const isNsrIdValid = (nsrIdInput) => {
-  let NSR_id  = parseInt(nsrIdInput);
+  const NSR_id  = parseInt(nsrIdInput);
   if (isNaN(NSR_id)) {
     document.getElementById('nsrText').innerHTML = 'Input not valid';
     return false;
@@ -56,7 +56,7 @@ const getStationId = (stationName) => {
 const isStationsValid = (stationsInput) => {
   const stations_list = stationsInput.split(",");
   let stations = {data: []};
-  for (station of stations_list) {
+  for (const station of stations_list) {
     const stationName = station.trim();
     if (stationName == "") {
       document.getElementById('stationsText').innerHTML = 'Input is not valid';
