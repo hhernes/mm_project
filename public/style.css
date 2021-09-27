@@ -144,6 +144,7 @@ ul {
 }
 
 #citybike {
+  margin-left: 10px;
   position: fixed;
   bottom: 1%;
   left: 1%;
