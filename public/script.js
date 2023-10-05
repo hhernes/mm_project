@@ -509,4 +509,4 @@ if (localStorage.getItem('nsrId')) {
 //   let stations = JSON.parse(localStorage.getItem('stationIds'));
 //   getCityBikeData(cityBikeStatusEndpoint, osloCityBikeRequest, stations);
 //   setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeRequest, stations);  
-}
+//}
