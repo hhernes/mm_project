@@ -81,14 +81,14 @@ const setStoredItems = () => {
   let nsrIdInput = document.getElementById('nsrIds').value;
   let nsrId = isNsrIdValid(nsrIdInput);
 
-  let stationsInput = document.getElementById('stationIds').value;
-  let stations = isStationsValid(stationsInput);
+  // let stationsInput = document.getElementById('stationIds').value;
+  // let stations = isStationsValid(stationsInput);
   
-  if (coordinates && nsrId && stations) {
+  if (coordinates && nsrId) {
     console.log("Saved to local storage");
     localStorage.setItem('coordinates', coordinatesInput);
     localStorage.setItem('nsrId', nsrIdInput);
-    localStorage.setItem('stationIds', JSON.stringify(stations));
+    // localStorage.setItem('stationIds', JSON.stringify(stations));
     document.getElementById("inputs").style.display = 'none';
     showElements();
     location.reload();
@@ -268,15 +268,15 @@ class Weather {
 
 const getSunriseAndSunsetTimes = (sunriseData) => {
   const arr = [];
-  let sunriseTime = sunriseData.getElementsByTagName('sunrise')[0].getAttribute('time');
-  let sunsetTime = sunriseData.getElementsByTagName('sunset')[0].getAttribute('time');
+  let sunriseTime = sunriseData.properties.sunrise.time
+  let sunsetTime = sunriseData.properties.sunset.time
   arr.push(dayjs(sunriseTime, 'YYYY-MM-DDTHH:mm:ssZ').format('HH:mm'), dayjs(sunsetTime, 'YYYY-MM-DDTHH:mm:ssZ').format('HH:mm'));
   return arr;
 }
 
 const getWeatherData = (latitude, longitude) => {
   let forecastEndpoint = `https://api.met.no/weatherapi/locationforecast/2.0/complete?lat=${latitude}&lon=${longitude}`;
-  let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/2.0/?lat=${latitude}&lon=${longitude}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
+  let sunriseEndpoint = `https://api.met.no/weatherapi/sunrise/3.0/sun?lat=${latitude}&lon=${longitude}&date=${dayjs().format('YYYY-MM-DD')}&offset=+01:00`;
   if (expires.isBefore(dayjs())) {
     let firstCall = fetch(forecastEndpoint);
     let secondCall = fetch(sunriseEndpoint);
@@ -285,7 +285,7 @@ const getWeatherData = (latitude, longitude) => {
     .then(values => Promise.all(values.map(value => value.text())))
     .then(data => {
       let forecastData = JSON.parse(data[0]);
-      let sunriseData = (new DOMParser().parseFromString(data[1], 'text/xml')).getElementsByTagName('location')[0].getElementsByTagName('time')[0];
+      let sunriseData = JSON.parse(data[1]);
       renderWeatherModule(forecastData, sunriseData);
     });
   }
@@ -449,7 +449,8 @@ document.getElementById('submitButton').onclick = () => {
 
 if (!localStorage.getItem('nsrId')) {
   hideElements();
-  getCityBikeStationData(cityBikeInfoEndpoint, osloCityBikeRequest);
+  document.getElementById("inputs").style.display = 'block';
+  //getCityBikeStationData(cityBikeInfoEndpoint, osloCityBikeRequest);
 } else {
   document.getElementById("inputs").style.display = 'none';
 }
