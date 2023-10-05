@@ -505,8 +505,8 @@ if (localStorage.getItem('nsrId')) {
   setInterval(renderPublicTransportModule, 5000, enturEndpoint, enturRequest);
 }
 
-if (localStorage.getItem('stationIds')) {
-  let stations = JSON.parse(localStorage.getItem('stationIds'));
-  getCityBikeData(cityBikeStatusEndpoint, osloCityBikeRequest, stations);
-  setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeRequest, stations);  
+// if (localStorage.getItem('stationIds')) {
+//   let stations = JSON.parse(localStorage.getItem('stationIds'));
+//   getCityBikeData(cityBikeStatusEndpoint, osloCityBikeRequest, stations);
+//   setInterval(getCityBikeData, 15000, cityBikeStatusEndpoint, osloCityBikeRequest, stations);  
 }
